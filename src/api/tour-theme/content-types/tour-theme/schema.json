@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tour_themes",
+  "info": {
+    "singularName": "tour-theme",
+    "pluralName": "tour-themes",
+    "displayName": "Tour Theme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
