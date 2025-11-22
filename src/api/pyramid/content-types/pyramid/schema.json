@@ -1,0 +1,227 @@
+{
+    "kind": "collectionType",
+    "collectionName": "pyramids",
+    "info": {
+      "singularName": "pyramid",
+      "pluralName": "pyramids",
+      "displayName": "Pyramid",
+      "description": "Ancient Egyptian pyramids and pyramid complexes"
+    },
+    "options": {
+      "draftAndPublish": true
+    },
+    "pluginOptions": {
+      "i18n": {
+        "localized": true
+      }
+    },
+    "attributes": {
+      "name": {
+        "type": "string",
+        "required": true,
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "slug": {
+        "type": "uid",
+        "targetField": "name",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "required": true,
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "site": {
+        "type": "enumeration",
+        "enum": [
+          "giza",
+          "saqqara",
+          "dahshur",
+          "meidum",
+          "abu_rawash",
+          "abusir",
+          "lisht",
+          "hawara",
+          "lahun",
+          "other"
+        ]
+      },
+      "builder": {
+        "type": "relation",
+        "relation": "manyToOne",
+        "target": "api::historical-king.historical-king",
+        "inversedBy": "pyramids"
+      },
+      "dynasty": {
+        "type": "relation",
+        "relation": "manyToOne",
+        "target": "api::dynasty.dynasty",
+        "inversedBy": "pyramids"
+      },
+      "period_built": {
+        "type": "string",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "original_height": {
+        "type": "decimal"
+      },
+      "current_height": {
+        "type": "decimal"
+      },
+      "base_length": {
+        "type": "decimal"
+      },
+      "volume": {
+        "type": "decimal"
+      },
+      "slope_angle": {
+        "type": "string"
+      },
+      "construction_type": {
+        "type": "enumeration",
+        "enum": [
+          "true_pyramid",
+          "step_pyramid",
+          "bent_pyramid",
+          "smooth_sided"
+        ]
+      },
+      "architectural_features": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "interior_chambers": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "pyramid_complex": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "construction_methods": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "discoveries": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "current_condition": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "accessibility": {
+        "type": "enumeration",
+        "enum": [
+          "open_to_public",
+          "limited_access",
+          "exterior_only",
+          "closed"
+        ]
+      },
+      "historical_significance": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "images_gallery": {
+        "type": "media",
+        "multiple": true,
+        "allowedTypes": ["images"],
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "fact_box": {
+        "type": "component",
+        "repeatable": true,
+        "component": "wiki.fact-box"
+      },
+      "timeline": {
+        "type": "component",
+        "repeatable": true,
+        "component": "wiki.timeline-entry"
+      },
+      "related_articles": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::wiki-article.wiki-article",
+        "mappedBy": "related_pyramids"
+      },
+      "associated_tombs": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::tomb.tomb",
+        "mappedBy": "related_pyramids"
+      },
+      "related_temples": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::temple.temple",
+        "mappedBy": "related_pyramids"
+      },
+      "related_queens": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::queen.queen",
+        "mappedBy": "related_pyramids"
+      },
+      "seo_title": {
+        "type": "string",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "seo_description": {
+        "type": "text",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      }
+    }
+  }

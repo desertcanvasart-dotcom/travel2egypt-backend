@@ -1,0 +1,154 @@
+{
+  "kind": "collectionType",
+  "collectionName": "historical_kings",
+  "info": {
+    "singularName": "historical-king",
+    "pluralName": "historical-kings",
+    "displayName": "Historical King / Pharaoh",
+    "description": "Deep biographies of Egyptian pharaohs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "dynasty": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::dynasty.dynasty",
+      "inversedBy": "pharaohs"
+    },
+    "period_start": {
+      "type": "integer"
+    },
+    "period_end": {
+      "type": "integer"
+    },
+    "titles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wiki.fact-box"
+    },
+    "family": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wiki.family-member"
+    },
+    "major_achievements": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "major_monuments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::temple.temple",
+      "inversedBy": "associated_pharaohs"
+    },
+    "iconography_explained": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "historical_significance": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mythological_association": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "images_gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "timeline": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wiki.timeline-entry"
+    },
+    "fact_box": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wiki.fact-box"
+    },
+    "related_articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::wiki-article.wiki-article",
+      "mappedBy": "related_pharaohs"
+    },
+    "seo_title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "seo_description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "queens": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::queen.queen",
+      "mappedBy": "pharaoh_consort"
+    },
+    "tombs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tomb.tomb",
+      "mappedBy": "pharaoh"
+    },
+    "pyramids": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pyramid.pyramid",
+      "mappedBy": "pharaoh"
+    }
+  }
+}
