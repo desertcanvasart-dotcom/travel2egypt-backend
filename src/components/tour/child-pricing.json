@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_tour_child_pricings",
+    "info": {
+      "displayName": "child_pricing",
+      "icon": "child"
+    },
+    "options": {},
+    "attributes": {
+      "child_discount_available": {
+        "type": "boolean",
+        "default": false
+      },
+      "child_discount_percentage": {
+        "type": "integer",
+        "min": 0,
+        "max": 100
+      },
+      "child_age_limit": {
+        "type": "integer"
+      }
+    }
+  }

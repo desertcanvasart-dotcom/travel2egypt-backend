@@ -23,6 +23,12 @@
       "type": "uid",
       "targetField": "Name",
       "required": true
+    },
+    "tours": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour",
+      "mappedBy": "tour_types"
     }
   }
 }

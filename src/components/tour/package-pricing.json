@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_tour_package_pricings",
+    "info": {
+      "displayName": "package_pricing",
+      "icon": "package"
+    },
+    "options": {},
+    "attributes": {
+      "pricing_tiers": {
+        "type": "component",
+        "repeatable": true,
+        "component": "pricing.tier"
+      },
+      "currency": {
+        "type": "string",
+        "default": "USD"
+      }
+    }
+  }

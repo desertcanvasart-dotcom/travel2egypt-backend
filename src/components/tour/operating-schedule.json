@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_tour_operating_schedules",
+    "info": {
+      "displayName": "operating_schedule",
+      "icon": "clock"
+    },
+    "options": {},
+    "attributes": {
+      "operating_days": {
+        "type": "string"
+      },
+      "departure_time": {
+        "type": "string"
+      }
+    }
+  }

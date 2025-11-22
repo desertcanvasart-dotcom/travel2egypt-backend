@@ -1,0 +1,23 @@
+{
+  "name": "travel2egypt-blog-migration",
+  "version": "1.0.0",
+  "description": "Migration scripts for WordPress to Strapi blog posts",
+  "main": "migrate-blog-posts.js",
+  "scripts": {
+    "create-categories": "node create-blog-categories.js",
+    "migrate-test": "node migrate-blog-posts.js",
+    "migrate-full": "node migrate-blog-posts.js"
+  },
+  "keywords": [
+    "wordpress",
+    "strapi",
+    "migration",
+    "blog"
+  ],
+  "author": "Travel2Egypt",
+  "license": "MIT",
+  "dependencies": {
+    "turndown": "^7.1.2",
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "collectionName": "components_blog_details",
+    "info": {
+      "displayName": "details",
+      "icon": "file"
+    },
+    "options": {},
+    "attributes": {
+      "read_time": {
+        "type": "string"
+      },
+      "featured": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }

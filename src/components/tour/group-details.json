@@ -1,0 +1,20 @@
+{
+    "collectionName": "components_tour_group_details",
+    "info": {
+      "displayName": "group_details",
+      "icon": "users"
+    },
+    "options": {},
+    "attributes": {
+      "maximum_group_size": {
+        "type": "integer"
+      },
+      "minimum_group_size_per_booking": {
+        "type": "integer"
+      },
+      "guaranteed_departure": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }

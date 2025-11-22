@@ -1,0 +1,38 @@
+{
+    "kind": "collectionType",
+    "collectionName": "departure_dates",
+    "info": {
+      "singularName": "departure-date",
+      "pluralName": "departure-dates",
+      "displayName": "Departure Date"
+    },
+    "options": {
+      "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+      "title": {
+        "type": "string",
+        "required": true
+      },
+      "departure_date": {
+        "type": "date",
+        "required": true
+      },
+      "available_seats": {
+        "type": "integer",
+        "default": 0
+      },
+      "status": {
+        "type": "enumeration",
+        "enum": ["available", "limited", "sold_out"],
+        "default": "available"
+      },
+      "related_tour": {
+        "type": "relation",
+        "relation": "manyToOne",
+        "target": "api::tour.tour",
+        "inversedBy": "departure_dates"
+      }
+    }
+  }

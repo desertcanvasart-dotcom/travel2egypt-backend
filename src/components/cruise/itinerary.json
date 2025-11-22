@@ -1,0 +1,25 @@
+{
+    "collectionName": "components_cruise_itineraries",
+    "info": {
+      "displayName": "itinerary",
+      "icon": "ship"
+    },
+    "options": {},
+    "attributes": {
+      "duration": {
+        "type": "string"
+      },
+      "route": {
+        "type": "string"
+      },
+      "departure_days": {
+        "type": "string"
+      },
+      "price": {
+        "type": "decimal"
+      },
+      "details": {
+        "type": "richtext"
+      }
+    }
+  }

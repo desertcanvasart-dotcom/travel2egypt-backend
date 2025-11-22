@@ -1,0 +1,39 @@
+{
+    "kind": "collectionType",
+    "collectionName": "tip_categories",
+    "info": {
+      "singularName": "tip-category",
+      "pluralName": "tip-categories",
+      "displayName": "Tip Category"
+    },
+    "options": {
+      "draftAndPublish": true
+    },
+    "pluginOptions": {
+      "i18n": {
+        "localized": true
+      }
+    },
+    "attributes": {
+      "name": {
+        "type": "string",
+        "required": true,
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "slug": {
+        "type": "uid",
+        "targetField": "name",
+        "required": true
+      },
+      "travel_tips": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::travel-tip.travel-tip",
+        "mappedBy": "tip_categories"
+      }
+    }
+  }

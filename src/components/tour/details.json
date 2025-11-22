@@ -1,0 +1,64 @@
+{
+    "collectionName": "components_tour_details",
+    "info": {
+      "displayName": "details",
+      "icon": "file"
+    },
+    "options": {},
+    "attributes": {
+      "overview": {
+        "type": "richtext"
+      },
+      "duration": {
+        "type": "string"
+      },
+      "pickup_time": {
+        "type": "string"
+      },
+      "group_size": {
+        "type": "string"
+      },
+      "languages": {
+        "type": "string"
+      },
+      "highlights": {
+        "type": "richtext"
+      },
+      "itinerary_type": {
+        "type": "enumeration",
+        "enum": ["simple", "detailed"]
+      },
+      "itinerary_simple": {
+        "type": "richtext"
+      },
+      "itinerary_detailed": {
+        "type": "component",
+        "repeatable": true,
+        "component": "tour.itinerary-day"
+      },
+      "inclusions": {
+        "type": "richtext"
+      },
+      "exclusions": {
+        "type": "richtext"
+      },
+      "important_info": {
+        "type": "richtext"
+      },
+      "what_to_bring": {
+        "type": "richtext"
+      },
+      "physical_level": {
+        "type": "enumeration",
+        "enum": ["easy", "moderate", "challenging"]
+      },
+      "average_rating": {
+        "type": "decimal"
+      },
+      "reviews": {
+        "type": "component",
+        "repeatable": true,
+        "component": "tour.review"
+      }
+    }
+  }

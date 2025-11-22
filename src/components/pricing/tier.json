@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_pricing_tiers",
+  "info": {
+    "displayName": "tier",
+    "icon": "priceTag"
+  },
+  "options": {},
+  "attributes": {
+    "group_size": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

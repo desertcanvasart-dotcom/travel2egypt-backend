@@ -1,0 +1,25 @@
+{
+    "collectionName": "components_tour_pricings",
+    "info": {
+      "displayName": "pricing",
+      "icon": "dollar"
+    },
+    "options": {},
+    "attributes": {
+      "ra_package_pricing": {
+        "type": "component",
+        "repeatable": true,
+        "component": "pricing.tier"
+      },
+      "horus_package_pricing": {
+        "type": "component",
+        "repeatable": true,
+        "component": "pricing.tier"
+      },
+      "pharaohs_package_pricing": {
+        "type": "component",
+        "repeatable": true,
+        "component": "pricing.tier"
+      }
+    }
+  }

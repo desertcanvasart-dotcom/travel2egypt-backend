@@ -27,6 +27,12 @@
     "description": {
       "type": "text",
       "required": true
+    },
+    "tours": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tour.tour",
+      "mappedBy": "tour_themes"
     }
   }
 }

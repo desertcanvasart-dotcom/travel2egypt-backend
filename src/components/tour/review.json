@@ -1,0 +1,35 @@
+{
+    "collectionName": "components_tour_reviews",
+    "info": {
+      "displayName": "review",
+      "icon": "star"
+    },
+    "options": {},
+    "attributes": {
+      "custumer_name": {
+        "type": "string",
+        "required": true
+      },
+      "country": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "integer",
+        "min": 1,
+        "max": 5
+      },
+      "review_date": {
+        "type": "date"
+      },
+      "review_title": {
+        "type": "string"
+      },
+      "review_text": {
+        "type": "text"
+      },
+      "verified_purchase": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }

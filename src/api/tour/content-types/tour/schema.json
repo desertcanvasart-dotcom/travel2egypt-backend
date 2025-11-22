@@ -1,0 +1,181 @@
+{
+    "kind": "collectionType",
+    "collectionName": "tours",
+    "info": {
+      "singularName": "tour",
+      "pluralName": "tours",
+      "displayName": "Tour",
+      "description": ""
+    },
+    "options": {
+      "draftAndPublish": true
+    },
+    "pluginOptions": {
+      "i18n": {
+        "localized": true
+      }
+    },
+    "attributes": {
+      "title": {
+        "type": "string",
+        "required": true,
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "slug": {
+        "type": "uid",
+        "targetField": "title",
+        "required": true
+      },
+      "excerpt": {
+        "type": "text",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "content": {
+        "type": "richtext",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "featured_image": {
+        "type": "media",
+        "multiple": false,
+        "required": false,
+        "allowedTypes": ["images"],
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "tour_details": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.details",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "tour_pricing": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.pricing",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "group_tour_pricing": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.group-pricing",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "group_tour_details": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.group-details",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "operating_schedule": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.operating-schedule",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "private_package_pricing": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.package-pricing",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "group_package_pricing": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.group-pricing",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "group_package_details": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.group-details",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "child_pricing": {
+        "type": "component",
+        "repeatable": false,
+        "component": "tour.child-pricing",
+        "pluginOptions": {
+          "i18n": {
+            "localized": true
+          }
+        }
+      },
+      "tour_types": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::tour-type.tour-type",
+        "inversedBy": "tours"
+      },
+      "tour_modes": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::tour-mode.tour-mode",
+        "inversedBy": "tours"
+      },
+      "locations": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::location.location",
+        "inversedBy": "tours"
+      },
+      "tour_themes": {
+        "type": "relation",
+        "relation": "manyToMany",
+        "target": "api::tour-theme.tour-theme",
+        "inversedBy": "tours"
+      },
+      "departure_dates": {
+        "type": "relation",
+        "relation": "oneToMany",
+        "target": "api::departure-date.departure-date",
+        "mappedBy": "related_tour"
+      }
+    }
+  }

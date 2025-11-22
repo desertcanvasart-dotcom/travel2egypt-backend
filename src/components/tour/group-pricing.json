@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_tour_group_pricings",
+    "info": {
+      "displayName": "group_pricing",
+      "icon": "users"
+    },
+    "options": {},
+    "attributes": {
+      "fixed_price": {
+        "type": "decimal",
+        "required": true
+      },
+      "currency": {
+        "type": "string",
+        "default": "USD"
+      }
+    }
+  }
+  
