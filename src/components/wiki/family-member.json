@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_wiki_family_members",
+  "info": {
+    "displayName": "Family Member",
+    "description": "Family relationships for pharaohs"
+  },
+  "options": {},
+  "attributes": {
+    "relationship": {
+      "type": "enumeration",
+      "enum": ["father", "mother", "wife", "son", "daughter", "brother", "sister"],
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

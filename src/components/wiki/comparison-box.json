@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_wiki_comparison_boxes",
+  "info": {
+    "displayName": "Comparison Box",
+    "description": "Side-by-side comparison of two entities"
+  },
+  "options": {},
+  "attributes": {
+    "title_left": {
+      "type": "string",
+      "required": true
+    },
+    "content_left": {
+      "type": "richtext",
+      "required": true
+    },
+    "title_right": {
+      "type": "string",
+      "required": true
+    },
+    "content_right": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

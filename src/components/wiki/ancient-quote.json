@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_wiki_ancient_quotes",
+  "info": {
+    "displayName": "Ancient Quote",
+    "description": "Quote or ancient text with source and translation"
+  },
+  "options": {},
+  "attributes": {
+    "source": {
+      "type": "string",
+      "required": true
+    },
+    "translation": {
+      "type": "text",
+      "required": true
+    },
+    "original_text": {
+      "type": "text"
+    }
+  }
+}

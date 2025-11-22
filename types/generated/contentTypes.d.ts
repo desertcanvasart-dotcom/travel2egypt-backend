@@ -862,6 +862,96 @@ export interface ApiDepartureDateDepartureDate
   };
 }
 
+export interface ApiDynastyDynasty extends Struct.CollectionTypeSchema {
+  collectionName: 'dynasties';
+  info: {
+    description: 'Egyptian royal dynasties from 1st to 31st';
+    displayName: 'Dynasty';
+    pluralName: 'dynasties';
+    singularName: 'dynasty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    archaeological_sources: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dynasty.dynasty'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    order_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 31;
+          min: 1;
+        },
+        number
+      >;
+    overview: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    period_end: Schema.Attribute.Integer;
+    period_start: Schema.Attribute.Integer;
+    pharaohs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::historical-king.historical-king'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    pyramids: Schema.Attribute.Relation<'oneToMany', 'api::pyramid.pyramid'>;
+    queens: Schema.Attribute.Relation<'oneToMany', 'api::queen.queen'>;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    time_period: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    tombs: Schema.Attribute.Relation<'oneToMany', 'api::tomb.tomb'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFaqCategoryFaqCategory extends Struct.CollectionTypeSchema {
   collectionName: 'faq_categories';
   info: {
@@ -942,6 +1032,204 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGodGod extends Struct.CollectionTypeSchema {
+  collectionName: 'gods';
+  info: {
+    description: 'Egyptian deities with mythology and worship details';
+    displayName: 'God or Goddess';
+    pluralName: 'gods';
+    singularName: 'god';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    associated_festivals: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cult_centers: Schema.Attribute.Component<'wiki.cult-center', true>;
+    depictions: Schema.Attribute.Component<'wiki.fact-box', true>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::god.god'>;
+    myths: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    parentage: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    realm_domain: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    related_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    related_temples: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::temple.temple'
+    >;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    symbols: Schema.Attribute.Component<'wiki.fact-box', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    worship_history: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface ApiHistoricalKingHistoricalKing
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'historical_kings';
+  info: {
+    description: 'Deep biographies of Egyptian pharaohs';
+    displayName: 'Historical King / Pharaoh';
+    pluralName: 'historical-kings';
+    singularName: 'historical-king';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dynasty: Schema.Attribute.Relation<'manyToOne', 'api::dynasty.dynasty'>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    family: Schema.Attribute.Component<'wiki.family-member', true>;
+    historical_significance: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    iconography_explained: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::historical-king.historical-king'
+    >;
+    major_achievements: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    major_monuments: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::temple.temple'
+    >;
+    mythological_association: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    period_end: Schema.Attribute.Integer;
+    period_start: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    pyramids: Schema.Attribute.Relation<'oneToMany', 'api::pyramid.pyramid'>;
+    queens: Schema.Attribute.Relation<'oneToMany', 'api::queen.queen'>;
+    related_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    titles: Schema.Attribute.Component<'wiki.fact-box', true>;
+    tombs: Schema.Attribute.Relation<'oneToMany', 'api::tomb.tomb'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1102,6 +1390,375 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPyramidPyramid extends Struct.CollectionTypeSchema {
+  collectionName: 'pyramids';
+  info: {
+    description: 'Ancient Egyptian pyramids and pyramid complexes';
+    displayName: 'Pyramid';
+    pluralName: 'pyramids';
+    singularName: 'pyramid';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    accessibility: Schema.Attribute.Enumeration<
+      ['open_to_public', 'limited_access', 'exterior_only', 'closed']
+    >;
+    architectural_features: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    associated_tombs: Schema.Attribute.Relation<'manyToMany', 'api::tomb.tomb'>;
+    base_length: Schema.Attribute.Decimal;
+    builder: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::historical-king.historical-king'
+    >;
+    construction_methods: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    construction_type: Schema.Attribute.Enumeration<
+      ['true_pyramid', 'step_pyramid', 'bent_pyramid', 'smooth_sided']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    current_condition: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    current_height: Schema.Attribute.Decimal;
+    discoveries: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    dynasty: Schema.Attribute.Relation<'manyToOne', 'api::dynasty.dynasty'>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    historical_significance: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    interior_chambers: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pyramid.pyramid'
+    >;
+    location: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    original_height: Schema.Attribute.Decimal;
+    period_built: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    pyramid_complex: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    related_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    related_queens: Schema.Attribute.Relation<'manyToMany', 'api::queen.queen'>;
+    related_temples: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::temple.temple'
+    >;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    site: Schema.Attribute.Enumeration<
+      [
+        'giza',
+        'saqqara',
+        'dahshur',
+        'meidum',
+        'abu_rawash',
+        'abusir',
+        'lisht',
+        'hawara',
+        'lahun',
+        'other',
+      ]
+    >;
+    slope_angle: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    volume: Schema.Attribute.Decimal;
+  };
+}
+
+export interface ApiQueenQueen extends Struct.CollectionTypeSchema {
+  collectionName: 'queens';
+  info: {
+    description: 'Egyptian queens and royal consorts';
+    displayName: 'Queen';
+    pluralName: 'queens';
+    singularName: 'queen';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    achievements: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    biography: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dynasty: Schema.Attribute.Relation<'manyToOne', 'api::dynasty.dynasty'>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    family: Schema.Attribute.Component<'wiki.family-member', true>;
+    historical_significance: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    husband: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::historical-king.historical-king'
+    >;
+    iconography: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::queen.queen'>;
+    monuments: Schema.Attribute.Relation<'manyToMany', 'api::temple.temple'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    period_end: Schema.Attribute.Integer;
+    period_start: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    related_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    related_pyramids: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::pyramid.pyramid'
+    >;
+    related_tombs: Schema.Attribute.Relation<'manyToMany', 'api::tomb.tomb'>;
+    role: Schema.Attribute.Enumeration<
+      [
+        'chief_wife',
+        'royal_wife',
+        'queen_regent',
+        'female_pharaoh',
+        'queen_mother',
+      ]
+    >;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    titles: Schema.Attribute.Component<'wiki.fact-box', true>;
+    tomb: Schema.Attribute.Relation<'oneToOne', 'api::tomb.tomb'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTempleTemple extends Struct.CollectionTypeSchema {
+  collectionName: 'temples';
+  info: {
+    description: 'Ancient Egyptian temples, pyramids, and monuments';
+    displayName: 'Temple & Monument';
+    pluralName: 'temples';
+    singularName: 'temple';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    architectural_style: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    associated_pharaohs: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::historical-king.historical-king'
+    >;
+    builder: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::historical-king.historical-king'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discoveries: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    dynasty: Schema.Attribute.Relation<'manyToOne', 'api::dynasty.dynasty'>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::temple.temple'>;
+    location: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    period_built: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    related_pyramids: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::pyramid.pyramid'
+    >;
+    related_queens: Schema.Attribute.Relation<'manyToMany', 'api::queen.queen'>;
+    related_tombs: Schema.Attribute.Relation<'manyToMany', 'api::tomb.tomb'>;
+    religious_purpose: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    worshipped_deities: Schema.Attribute.Relation<'manyToMany', 'api::god.god'>;
+  };
+}
+
 export interface ApiTipCategoryTipCategory extends Struct.CollectionTypeSchema {
   collectionName: 'tip_categories';
   info: {
@@ -1142,6 +1799,150 @@ export interface ApiTipCategoryTipCategory extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTombTomb extends Struct.CollectionTypeSchema {
+  collectionName: 'tombs';
+  info: {
+    description: 'Ancient Egyptian burial sites and tombs';
+    displayName: 'Tomb';
+    pluralName: 'tombs';
+    singularName: 'tomb';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    accessibility: Schema.Attribute.Enumeration<
+      ['open_to_public', 'limited_access', 'closed', 'by_special_permission']
+    >;
+    architectural_features: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    burial_goods: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    current_condition: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    discovered_by: Schema.Attribute.String;
+    discoveries: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    discovery_date: Schema.Attribute.String;
+    dynasty: Schema.Attribute.Relation<'manyToOne', 'api::dynasty.dynasty'>;
+    fact_box: Schema.Attribute.Component<'wiki.fact-box', true>;
+    images_gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tomb.tomb'>;
+    location: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    occupant_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    occupant_pharaoh: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::historical-king.historical-king'
+    >;
+    occupant_queen: Schema.Attribute.Relation<'oneToOne', 'api::queen.queen'>;
+    period_built: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    related_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    related_pyramids: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::pyramid.pyramid'
+    >;
+    related_temples: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::temple.temple'
+    >;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    site: Schema.Attribute.Enumeration<
+      [
+        'valley_of_kings',
+        'valley_of_queens',
+        'valley_of_nobles',
+        'deir_el_medina',
+        'saqqara',
+        'giza_necropolis',
+        'theban_necropolis',
+        'amarna',
+        'abydos',
+        'other',
+      ]
+    >;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    timeline: Schema.Attribute.Component<'wiki.timeline-entry', true>;
+    tomb_number: Schema.Attribute.String & Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wall_decorations: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -1443,6 +2244,87 @@ export interface ApiTravelTipTravelTip extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::tip-category.tip-category'
     >;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWikiArticleWikiArticle extends Struct.CollectionTypeSchema {
+  collectionName: 'wiki_articles';
+  info: {
+    description: 'General wiki articles about Egyptian history and culture';
+    displayName: 'Wiki Article';
+    pluralName: 'wiki-articles';
+    singularName: 'wiki-article';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::wiki-article.wiki-article'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    related_gods: Schema.Attribute.Relation<'manyToMany', 'api::god.god'>;
+    related_pharaohs: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::historical-king.historical-king'
+    >;
+    related_pyramids: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::pyramid.pyramid'
+    >;
+    related_queens: Schema.Attribute.Relation<'manyToMany', 'api::queen.queen'>;
+    related_tombs: Schema.Attribute.Relation<'manyToMany', 'api::tomb.tomb'>;
+    seo_description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1973,16 +2855,24 @@ declare module '@strapi/strapi' {
       'api::blog.blog': ApiBlogBlog;
       'api::city-guide.city-guide': ApiCityGuideCityGuide;
       'api::departure-date.departure-date': ApiDepartureDateDepartureDate;
+      'api::dynasty.dynasty': ApiDynastyDynasty;
       'api::faq-category.faq-category': ApiFaqCategoryFaqCategory;
       'api::faq.faq': ApiFaqFaq;
+      'api::god.god': ApiGodGod;
+      'api::historical-king.historical-king': ApiHistoricalKingHistoricalKing;
       'api::hotel.hotel': ApiHotelHotel;
       'api::location.location': ApiLocationLocation;
+      'api::pyramid.pyramid': ApiPyramidPyramid;
+      'api::queen.queen': ApiQueenQueen;
+      'api::temple.temple': ApiTempleTemple;
       'api::tip-category.tip-category': ApiTipCategoryTipCategory;
+      'api::tomb.tomb': ApiTombTomb;
       'api::tour-mode.tour-mode': ApiTourModeTourMode;
       'api::tour-theme.tour-theme': ApiTourThemeTourTheme;
       'api::tour-type.tour-type': ApiTourTypeTourType;
       'api::tour.tour': ApiTourTour;
       'api::travel-tip.travel-tip': ApiTravelTipTravelTip;
+      'api::wiki-article.wiki-article': ApiWikiArticleWikiArticle;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_wiki_timeline_entries",
+  "info": {
+    "displayName": "Timeline Entry",
+    "description": "Year or period with description for chronological events"
+  },
+  "options": {},
+  "attributes": {
+    "year_or_period": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

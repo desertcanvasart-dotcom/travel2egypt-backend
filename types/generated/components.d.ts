@@ -191,6 +191,99 @@ export interface TourReview extends Struct.ComponentSchema {
   };
 }
 
+export interface WikiAncientQuote extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_ancient_quotes';
+  info: {
+    description: 'Quote or ancient text with source and translation';
+    displayName: 'Ancient Quote';
+  };
+  attributes: {
+    original_text: Schema.Attribute.Text;
+    source: Schema.Attribute.String & Schema.Attribute.Required;
+    translation: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface WikiCaptionedImage extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_captioned_images';
+  info: {
+    description: 'Image with caption for wiki articles';
+    displayName: 'Captioned Image';
+  };
+  attributes: {
+    alt_text: Schema.Attribute.String;
+    caption: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
+export interface WikiComparisonBox extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_comparison_boxes';
+  info: {
+    description: 'Side-by-side comparison of two entities';
+    displayName: 'Comparison Box';
+  };
+  attributes: {
+    content_left: Schema.Attribute.RichText & Schema.Attribute.Required;
+    content_right: Schema.Attribute.RichText & Schema.Attribute.Required;
+    title_left: Schema.Attribute.String & Schema.Attribute.Required;
+    title_right: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface WikiCultCenter extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_cult_centers';
+  info: {
+    description: 'Major worship locations for gods';
+    displayName: 'Cult Center';
+  };
+  attributes: {
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    significance: Schema.Attribute.Text;
+    temple: Schema.Attribute.String;
+  };
+}
+
+export interface WikiFactBox extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_fact_boxes';
+  info: {
+    description: 'Quick facts for kings, gods, dynasties';
+    displayName: 'Fact Box';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface WikiFamilyMember extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_family_members';
+  info: {
+    description: 'Family relationships for pharaohs';
+    displayName: 'Family Member';
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    relationship: Schema.Attribute.Enumeration<
+      ['father', 'mother', 'wife', 'son', 'daughter', 'brother', 'sister']
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface WikiTimelineEntry extends Struct.ComponentSchema {
+  collectionName: 'components_wiki_timeline_entries';
+  info: {
+    description: 'Year or period with description for chronological events';
+    displayName: 'Timeline Entry';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    year_or_period: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -206,6 +299,13 @@ declare module '@strapi/strapi' {
       'tour.package-pricing': TourPackagePricing;
       'tour.pricing': TourPricing;
       'tour.review': TourReview;
+      'wiki.ancient-quote': WikiAncientQuote;
+      'wiki.captioned-image': WikiCaptionedImage;
+      'wiki.comparison-box': WikiComparisonBox;
+      'wiki.cult-center': WikiCultCenter;
+      'wiki.fact-box': WikiFactBox;
+      'wiki.family-member': WikiFamilyMember;
+      'wiki.timeline-entry': WikiTimelineEntry;
     }
   }
 }

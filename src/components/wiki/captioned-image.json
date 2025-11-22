@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_wiki_captioned_images",
+  "info": {
+    "displayName": "Captioned Image",
+    "description": "Image with caption for wiki articles"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "caption": {
+      "type": "text",
+      "required": true
+    },
+    "alt_text": {
+      "type": "string"
+    }
+  }
+}
