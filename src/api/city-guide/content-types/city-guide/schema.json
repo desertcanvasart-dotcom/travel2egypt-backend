@@ -17,12 +17,12 @@
   "attributes": {
     "title": {
       "type": "string",
+      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
     },
     "slug": {
       "type": "uid",
@@ -47,60 +47,33 @@
     },
     "featured_image": {
       "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      }
     },
     "section_type": {
       "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "enum": [
-        "overview",
-        "history",
-        "attractions",
-        "food",
-        "transportation",
-        "accommodation",
-        "nightlife",
-        "shopping",
-        "culture",
-        "practical_info"
-      ]
+      "enum": ["hub", "section", "subsection"],
+      "default": "hub",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
     },
     "country": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "type": "string"
     },
     "region": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "type": "string"
     },
     "population": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "type": "string"
     },
     "parent": {
       "type": "relation",
