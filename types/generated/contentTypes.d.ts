@@ -828,6 +828,40 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCruiseTypeCruiseType extends Struct.CollectionTypeSchema {
+  collectionName: 'cruise_types';
+  info: {
+    displayName: 'Cruise Type';
+    pluralName: 'cruise-types';
+    singularName: 'cruise-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cruise-type.cruise-type'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    nile_cruises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nile-cruise.nile-cruise'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDepartureDateDepartureDate
   extends Struct.CollectionTypeSchema {
   collectionName: 'departure_dates';
@@ -1374,6 +1408,10 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::location.location'
     >;
+    location: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nile-cruise.nile-cruise'
+    >;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1387,6 +1425,59 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNileCruiseNileCruise extends Struct.CollectionTypeSchema {
+  collectionName: 'nile_cruises';
+  info: {
+    displayName: 'Nile Cruise';
+    pluralName: 'nile-cruises';
+    singularName: 'nile-cruise';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amenities: Schema.Attribute.RichText;
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cruise_types: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::cruise-type.cruise-type'
+    >;
+    duration: Schema.Attribute.String;
+    excerpt: Schema.Attribute.Text;
+    exclusions: Schema.Attribute.RichText;
+    featured_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    highlight_features: Schema.Attribute.RichText;
+    inclusions: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nile-cruise.nile-cruise'
+    > &
+      Schema.Attribute.Private;
+    nile_cruise: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::location.location'
+    >;
+    operator_name: Schema.Attribute.String;
+    overview: Schema.Attribute.RichText;
+    price_from: Schema.Attribute.Decimal;
+    promo_tagline: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    route: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vessel_class: Schema.Attribute.String;
   };
 }
 
@@ -2854,6 +2945,7 @@ declare module '@strapi/strapi' {
       'api::blog-tag.blog-tag': ApiBlogTagBlogTag;
       'api::blog.blog': ApiBlogBlog;
       'api::city-guide.city-guide': ApiCityGuideCityGuide;
+      'api::cruise-type.cruise-type': ApiCruiseTypeCruiseType;
       'api::departure-date.departure-date': ApiDepartureDateDepartureDate;
       'api::dynasty.dynasty': ApiDynastyDynasty;
       'api::faq-category.faq-category': ApiFaqCategoryFaqCategory;
@@ -2862,6 +2954,7 @@ declare module '@strapi/strapi' {
       'api::historical-king.historical-king': ApiHistoricalKingHistoricalKing;
       'api::hotel.hotel': ApiHotelHotel;
       'api::location.location': ApiLocationLocation;
+      'api::nile-cruise.nile-cruise': ApiNileCruiseNileCruise;
       'api::pyramid.pyramid': ApiPyramidPyramid;
       'api::queen.queen': ApiQueenQueen;
       'api::temple.temple': ApiTempleTemple;

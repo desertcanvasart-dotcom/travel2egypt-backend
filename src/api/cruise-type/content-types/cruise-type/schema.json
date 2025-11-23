@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cruise_types",
+  "info": {
+    "singularName": "cruise-type",
+    "pluralName": "cruise-types",
+    "displayName": "Cruise Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid"
+    },
+    "description": {
+      "type": "text"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nile_cruises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::nile-cruise.nile-cruise",
+      "inversedBy": "cruise_types"
+    }
+  }
+}

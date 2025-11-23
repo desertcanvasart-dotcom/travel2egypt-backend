@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nile_cruises",
+  "info": {
+    "singularName": "nile-cruise",
+    "pluralName": "nile-cruises",
+    "displayName": "Nile Cruise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "route": {
+      "type": "string"
+    },
+    "vessel_class": {
+      "type": "string"
+    },
+    "operator_name": {
+      "type": "string"
+    },
+    "promo_tagline": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "overview": {
+      "type": "richtext"
+    },
+    "inclusions": {
+      "type": "richtext"
+    },
+    "exclusions": {
+      "type": "richtext"
+    },
+    "amenities": {
+      "type": "richtext"
+    },
+    "highlight_features": {
+      "type": "richtext"
+    },
+    "price_from": {
+      "type": "decimal"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "nile_cruise": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "mappedBy": "location"
+    },
+    "cruise_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cruise-type.cruise-type",
+      "mappedBy": "nile_cruises"
+    }
+  }
+}
