@@ -752,12 +752,7 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    country: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    country: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -778,42 +773,19 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::city-guide.city-guide'
     >;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     parent: Schema.Attribute.Relation<
       'manyToOne',
       'api::city-guide.city-guide'
     >;
-    population: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    population: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    region: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    region: Schema.Attribute.String;
     section_type: Schema.Attribute.Enumeration<
-      [
-        'overview',
-        'history',
-        'attractions',
-        'food',
-        'transportation',
-        'accommodation',
-        'nightlife',
-        'shopping',
-        'culture',
-        'practical_info',
-      ]
+      ['hub', 'section', 'subsection']
     > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'hub'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -2130,9 +2102,9 @@ export interface ApiTourTypeTourType extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::tour-type.tour-type'
     >;
-    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     tours: Schema.Attribute.Relation<'manyToMany', 'api::tour.tour'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

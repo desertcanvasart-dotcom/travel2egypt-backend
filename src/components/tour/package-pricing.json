@@ -1,19 +1,38 @@
 {
-    "collectionName": "components_tour_package_pricings",
-    "info": {
-      "displayName": "package_pricing",
-      "icon": "package"
+  "collectionName": "components_tour_package_pricings",
+  "info": {
+    "displayName": "package_pricing",
+    "icon": "package"
+  },
+  "options": {},
+  "attributes": {
+    "currency": {
+      "type": "string",
+      "default": "USD"
     },
-    "options": {},
-    "attributes": {
-      "pricing_tiers": {
-        "type": "component",
-        "repeatable": true,
-        "component": "pricing.tier"
-      },
-      "currency": {
-        "type": "string",
-        "default": "USD"
-      }
+    "standard_tiers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pricing.tier"
+    },
+    "standard_hotels": {
+      "type": "text"
+    },
+    "deluxe_tiers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pricing.tier"
+    },
+    "deluxe_hotels": {
+      "type": "text"
+    },
+    "luxury_tiers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pricing.tier"
+    },
+    "luxury_hotels": {
+      "type": "text"
     }
   }
+}
