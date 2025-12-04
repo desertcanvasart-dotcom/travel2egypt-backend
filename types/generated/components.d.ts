@@ -149,7 +149,12 @@ export interface TourPackagePricing extends Struct.ComponentSchema {
   };
   attributes: {
     currency: Schema.Attribute.String & Schema.Attribute.DefaultTo<'USD'>;
-    pricing_tiers: Schema.Attribute.Component<'pricing.tier', true>;
+    deluxe_hotels: Schema.Attribute.Text;
+    deluxe_tiers: Schema.Attribute.Component<'pricing.tier', true>;
+    luxury_hotels: Schema.Attribute.Text;
+    luxury_tiers: Schema.Attribute.Component<'pricing.tier', true>;
+    standard_hotels: Schema.Attribute.Text;
+    standard_tiers: Schema.Attribute.Component<'pricing.tier', true>;
   };
 }
 
