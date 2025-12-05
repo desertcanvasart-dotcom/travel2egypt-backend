@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_faq_items",
+  "info": {
+    "displayName": "FAQ Item",
+    "icon": "question",
+    "description": "Single FAQ question and answer"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_content_gallery_blocks",
+  "info": {
+    "displayName": "Gallery Block",
+    "icon": "images",
+    "description": "Image gallery with multiple photos"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": ["grid", "carousel", "masonry"],
+      "default": "grid"
+    }
+  }
+}

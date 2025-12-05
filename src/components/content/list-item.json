@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_content_list_items",
+  "info": {
+    "displayName": "List Item",
+    "icon": "arrow-right",
+    "description": "Single item in a list"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "subtext": {
+      "type": "string"
+    }
+  }
+}

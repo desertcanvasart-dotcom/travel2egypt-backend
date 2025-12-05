@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_content_list_blocks",
+  "info": {
+    "displayName": "List Block",
+    "icon": "list-ul",
+    "description": "Titled list of items"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": ["bullet", "numbered", "check", "arrow"],
+      "default": "bullet"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.list-item"
+    }
+  }
+}

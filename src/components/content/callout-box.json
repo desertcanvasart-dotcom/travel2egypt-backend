@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_content_callout_boxes",
+  "info": {
+    "displayName": "Callout Box",
+    "icon": "exclamation",
+    "description": "Highlighted info box for tips, warnings, or facts"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["info", "tip", "warning", "fact", "historical"],
+      "default": "info"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

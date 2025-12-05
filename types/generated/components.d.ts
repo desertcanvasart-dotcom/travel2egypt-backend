@@ -12,6 +12,171 @@ export interface BlogDetails extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentCalloutBox extends Struct.ComponentSchema {
+  collectionName: 'components_content_callout_boxes';
+  info: {
+    description: 'Highlighted info box for tips, warnings, or facts';
+    displayName: 'Callout Box';
+    icon: 'exclamation';
+  };
+  attributes: {
+    icon: Schema.Attribute.String;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      ['info', 'tip', 'warning', 'fact', 'historical']
+    > &
+      Schema.Attribute.DefaultTo<'info'>;
+  };
+}
+
+export interface ContentCtaBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_cta_blocks';
+  info: {
+    description: 'Call to action with button';
+    displayName: 'CTA Block';
+    icon: 'hand-pointer';
+  };
+  attributes: {
+    button_text: Schema.Attribute.String & Schema.Attribute.Required;
+    button_url: Schema.Attribute.String & Schema.Attribute.Required;
+    heading: Schema.Attribute.String;
+    style: Schema.Attribute.Enumeration<['primary', 'secondary', 'outline']> &
+      Schema.Attribute.DefaultTo<'primary'>;
+    text: Schema.Attribute.Text;
+  };
+}
+
+export interface ContentFaqBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_faq_blocks';
+  info: {
+    description: 'Inline FAQ section';
+    displayName: 'FAQ Block';
+    icon: 'question-circle';
+  };
+  attributes: {
+    questions: Schema.Attribute.Component<'content.faq-item', true>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Frequently Asked Questions'>;
+  };
+}
+
+export interface ContentFaqItem extends Struct.ComponentSchema {
+  collectionName: 'components_content_faq_items';
+  info: {
+    description: 'Single FAQ question and answer';
+    displayName: 'FAQ Item';
+    icon: 'question';
+  };
+  attributes: {
+    answer: Schema.Attribute.RichText & Schema.Attribute.Required;
+    question: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ContentGalleryBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_gallery_blocks';
+  info: {
+    description: 'Image gallery with multiple photos';
+    displayName: 'Gallery Block';
+    icon: 'images';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    layout: Schema.Attribute.Enumeration<['grid', 'carousel', 'masonry']> &
+      Schema.Attribute.DefaultTo<'grid'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContentImageBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_image_blocks';
+  info: {
+    description: 'Image with caption and alt text';
+    displayName: 'Image Block';
+    icon: 'picture';
+  };
+  attributes: {
+    alt_text: Schema.Attribute.String;
+    caption: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    size: Schema.Attribute.Enumeration<['small', 'medium', 'large', 'full']> &
+      Schema.Attribute.DefaultTo<'large'>;
+  };
+}
+
+export interface ContentListBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_list_blocks';
+  info: {
+    description: 'Titled list of items';
+    displayName: 'List Block';
+    icon: 'list-ul';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'content.list-item', true>;
+    style: Schema.Attribute.Enumeration<
+      ['bullet', 'numbered', 'check', 'arrow']
+    > &
+      Schema.Attribute.DefaultTo<'bullet'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ContentListItem extends Struct.ComponentSchema {
+  collectionName: 'components_content_list_items';
+  info: {
+    description: 'Single item in a list';
+    displayName: 'List Item';
+    icon: 'arrow-right';
+  };
+  attributes: {
+    subtext: Schema.Attribute.String;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ContentQuoteBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_quote_blocks';
+  info: {
+    description: 'Quotation with attribution';
+    displayName: 'Quote Block';
+    icon: 'quote-right';
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    quote: Schema.Attribute.Text & Schema.Attribute.Required;
+    source: Schema.Attribute.String;
+    year: Schema.Attribute.String;
+  };
+}
+
+export interface ContentTextBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_text_blocks';
+  info: {
+    description: 'Rich text section with optional heading';
+    displayName: 'Text Block';
+    icon: 'align-left';
+  };
+  attributes: {
+    body: Schema.Attribute.RichText;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface ContentVideoBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_video_blocks';
+  info: {
+    description: 'Embedded video from YouTube or Vimeo';
+    displayName: 'Video Block';
+    icon: 'play-circle';
+  };
+  attributes: {
+    caption: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    video_url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface CruiseItinerary extends Struct.ComponentSchema {
   collectionName: 'components_cruise_itineraries';
   info: {
@@ -293,6 +458,17 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blog.details': BlogDetails;
+      'content.callout-box': ContentCalloutBox;
+      'content.cta-block': ContentCtaBlock;
+      'content.faq-block': ContentFaqBlock;
+      'content.faq-item': ContentFaqItem;
+      'content.gallery-block': ContentGalleryBlock;
+      'content.image-block': ContentImageBlock;
+      'content.list-block': ContentListBlock;
+      'content.list-item': ContentListItem;
+      'content.quote-block': ContentQuoteBlock;
+      'content.text-block': ContentTextBlock;
+      'content.video-block': ContentVideoBlock;
       'cruise.itinerary': CruiseItinerary;
       'pricing.tier': PricingTier;
       'tour.child-pricing': TourChildPricing;

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_content_quote_blocks",
+  "info": {
+    "displayName": "Quote Block",
+    "icon": "quote-right",
+    "description": "Quotation with attribution"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "author": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_content_video_blocks",
+  "info": {
+    "displayName": "Video Block",
+    "icon": "play-circle",
+    "description": "Embedded video from YouTube or Vimeo"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "video_url": {
+      "type": "string",
+      "required": true
+    },
+    "caption": {
+      "type": "string"
+    }
+  }
+}
