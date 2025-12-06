@@ -76,8 +76,16 @@ function cleanContent(html) {
     .replace(/&#8212;/g, '—')
     .replace(/&nbsp;/g, ' ');
   content = content.replace(/http:\/\/travel2egypt\.org/g, 'https://travel2egypt.org');
+  content = content.replace(/http:\/\/islamm15\.sg-host\.com/g, 'https://travel2egypt.org');
   content = content.replace(/data-wpil-monitor-id="[^"]*"/g, '');
-  return content;
+  // Remove Elementor div wrappers
+  content = content.replace(/<div[^>]*class="[^"]*elementor[^"]*"[^>]*>/gi, '');
+  content = content.replace(/<\/div>/gi, '');
+  content = content.replace(/data-id="[^"]*"/g, '');
+  content = content.replace(/data-element_type="[^"]*"/g, '');
+  content = content.replace(/data-settings="[^"]*"/g, '');
+  content = content.replace(/data-widget_type="[^"]*"/g, '');
+  return content.trim();
 }
 
 function generateSlug(title) {
@@ -89,13 +97,13 @@ function generateSlug(title) {
     .substring(0, 200);
 }
 
-async function findOrCreateCategory(name, locale = 'en') {
+async function findOrCreateTipCategory(name, locale = 'en') {
   if (!name || !name.trim()) return null;
   const slug = generateSlug(name.trim());
   
   try {
     const searchRes = await fetch(
-      `${STRAPI_URL}/api/blog-categories?filters[slug][$eq]=${slug}&locale=${locale}`,
+      `${STRAPI_URL}/api/tip-categories?filters[slug][$eq]=${slug}&locale=${locale}`,
       { headers }
     );
     const searchData = await searchRes.json();
@@ -104,7 +112,7 @@ async function findOrCreateCategory(name, locale = 'en') {
       return searchData.data[0].id;
     }
     
-    const createRes = await fetch(`${STRAPI_URL}/api/blog-categories?locale=${locale}`, {
+    const createRes = await fetch(`${STRAPI_URL}/api/tip-categories?locale=${locale}`, {
       method: 'POST',
       headers,
       body: JSON.stringify({
@@ -114,61 +122,28 @@ async function findOrCreateCategory(name, locale = 'en') {
     
     const createData = await createRes.json();
     if (createData.data) {
-      console.log(`  ✓ Created category: ${name}`);
+      console.log(`  ✓ Created tip category: ${name}`);
       return createData.data.id;
     }
   } catch (err) {
-    console.error(`  ✗ Error with category ${name}:`, err.message);
+    console.error(`  ✗ Error with tip category ${name}:`, err.message);
   }
   return null;
 }
 
-async function findOrCreateTag(name, locale = 'en') {
-  if (!name || !name.trim()) return null;
-  const slug = generateSlug(name.trim());
-  
-  try {
-    const searchRes = await fetch(
-      `${STRAPI_URL}/api/blog-tags?filters[slug][$eq]=${slug}&locale=${locale}`,
-      { headers }
-    );
-    const searchData = await searchRes.json();
-    
-    if (searchData.data && searchData.data.length > 0) {
-      return searchData.data[0].id;
-    }
-    
-    const createRes = await fetch(`${STRAPI_URL}/api/blog-tags?locale=${locale}`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        data: { name: name.trim(), slug: slug }
-      })
-    });
-    
-    const createData = await createRes.json();
-    if (createData.data) {
-      console.log(`  ✓ Created tag: ${name}`);
-      return createData.data.id;
-    }
-  } catch (err) {
-    console.error(`  ✗ Error with tag ${name}:`, err.message);
-  }
-  return null;
-}
-
-async function importBlogPost(post, locale = 'en') {
+async function importTravelTip(post, locale = 'en') {
   const title = post['Title'] || '';
   if (!title) {
-    console.log('  ⚠ Skipping post without title');
+    console.log('  ⚠ Skipping tip without title');
     return null;
   }
   
-  const slug = generateSlug(title);
+  // Use slug from CSV if available, otherwise generate
+  const slug = post['Slug'] || generateSlug(title);
   
   try {
     const existingRes = await fetch(
-      `${STRAPI_URL}/api/blogs?filters[slug][$eq]=${slug}&locale=${locale}`,
+      `${STRAPI_URL}/api/travel-tips?filters[slug][$eq]=${slug}&locale=${locale}`,
       { headers }
     );
     const existingData = await existingRes.json();
@@ -179,49 +154,29 @@ async function importBlogPost(post, locale = 'en') {
     }
   } catch (err) {}
   
+  // Process tip categories (pipe-separated in CSV)
   const categoryIds = [];
-  if (post['Categories']) {
-    const categories = post['Categories'].split(',').map(c => c.trim()).filter(c => c);
+  if (post['Tip Categories']) {
+    const categories = post['Tip Categories'].split('|').map(c => c.trim()).filter(c => c);
     for (const cat of categories) {
-      const catId = await findOrCreateCategory(cat, locale);
+      const catId = await findOrCreateTipCategory(cat, locale);
       if (catId) categoryIds.push(catId);
     }
   }
   
-  const tagIds = [];
-  if (post['Tags']) {
-    const tags = post['Tags'].split(',').map(t => t.trim()).filter(t => t);
-    for (const tag of tags) {
-      const tagId = await findOrCreateTag(tag, locale);
-      if (tagId) tagIds.push(tagId);
-    }
-  }
-  
-  let publishDate = null;
-  if (post['Date']) {
-    try {
-      publishDate = new Date(post['Date']).toISOString();
-    } catch (e) {
-      publishDate = new Date().toISOString();
-    }
-  }
-  
-  const blogData = {
+  const tipData = {
     title: title,
     slug: slug,
     excerpt: post['Excerpt'] || '',
     content: cleanContent(post['Content'] || ''),
-    publish_date: publishDate,
-    blog_categories: categoryIds,
-    blog_tags: tagIds
+    tip_categories: categoryIds
   };
   
   try {
-    // Pass locale as query parameter for Strapi 5
-    const createRes = await fetch(`${STRAPI_URL}/api/blogs?locale=${locale}`, {
+    const createRes = await fetch(`${STRAPI_URL}/api/travel-tips?locale=${locale}`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ data: blogData })
+      body: JSON.stringify({ data: tipData })
     });
     
     const createData = await createRes.json();
@@ -245,7 +200,7 @@ async function main() {
   const csvPath = process.argv[2];
   
   if (!csvPath) {
-    console.log('Usage: node import-blogs.js <path-to-csv>');
+    console.log('Usage: node import-travel-tips.js <path-to-csv>');
     process.exit(1);
   }
   
@@ -259,7 +214,7 @@ async function main() {
   const content = fs.readFileSync(csvPath, 'utf-8');
   const posts = parseCSV(content);
   
-  console.log(`📊 Found ${posts.length} posts to import\n`);
+  console.log(`📊 Found ${posts.length} travel tips to import\n`);
   
   let locale = 'en';
   const filename = path.basename(csvPath).toLowerCase();
@@ -277,7 +232,7 @@ async function main() {
     const post = posts[i];
     console.log(`\n[${i + 1}/${posts.length}] Processing: ${(post['Title'] || 'No title').substring(0, 50)}...`);
     
-    const result = await importBlogPost(post, locale);
+    const result = await importTravelTip(post, locale);
     
     if (result) {
       if (result.id) imported++;
