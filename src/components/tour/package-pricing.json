@@ -8,7 +8,7 @@
   "attributes": {
     "currency": {
       "type": "string",
-      "default": "USD"
+      "default": "EUR"
     },
     "standard_tiers": {
       "type": "component",
@@ -18,6 +18,10 @@
     "standard_hotels": {
       "type": "text"
     },
+    "standard_single_supplement": {
+      "type": "decimal",
+      "default": 0
+    },
     "deluxe_tiers": {
       "type": "component",
       "repeatable": true,
@@ -26,6 +30,10 @@
     "deluxe_hotels": {
       "type": "text"
     },
+    "deluxe_single_supplement": {
+      "type": "decimal",
+      "default": 0
+    },
     "luxury_tiers": {
       "type": "component",
       "repeatable": true,
@@ -33,6 +41,10 @@
     },
     "luxury_hotels": {
       "type": "text"
+    },
+    "luxury_single_supplement": {
+      "type": "decimal",
+      "default": 0
     }
   }
 }
