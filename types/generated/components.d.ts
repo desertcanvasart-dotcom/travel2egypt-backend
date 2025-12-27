@@ -274,8 +274,10 @@ export interface TourGroupPricing extends Struct.ComponentSchema {
     icon: 'users';
   };
   attributes: {
-    currency: Schema.Attribute.String & Schema.Attribute.DefaultTo<'USD'>;
+    currency: Schema.Attribute.String & Schema.Attribute.DefaultTo<'EUR'>;
     fixed_price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    single_room_supplement: Schema.Attribute.Decimal &
+      Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -313,12 +315,18 @@ export interface TourPackagePricing extends Struct.ComponentSchema {
     icon: 'package';
   };
   attributes: {
-    currency: Schema.Attribute.String & Schema.Attribute.DefaultTo<'USD'>;
+    currency: Schema.Attribute.String & Schema.Attribute.DefaultTo<'EUR'>;
     deluxe_hotels: Schema.Attribute.Text;
+    deluxe_single_supplement: Schema.Attribute.Decimal &
+      Schema.Attribute.DefaultTo<0>;
     deluxe_tiers: Schema.Attribute.Component<'pricing.tier', true>;
     luxury_hotels: Schema.Attribute.Text;
+    luxury_single_supplement: Schema.Attribute.Decimal &
+      Schema.Attribute.DefaultTo<0>;
     luxury_tiers: Schema.Attribute.Component<'pricing.tier', true>;
     standard_hotels: Schema.Attribute.Text;
+    standard_single_supplement: Schema.Attribute.Decimal &
+      Schema.Attribute.DefaultTo<0>;
     standard_tiers: Schema.Attribute.Component<'pricing.tier', true>;
   };
 }
