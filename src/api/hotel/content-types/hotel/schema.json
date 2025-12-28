@@ -58,6 +58,13 @@
         }
       }
     },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "star_rating": {
       "type": "enumeration",
       "enum": [
