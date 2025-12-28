@@ -178,6 +178,11 @@
       "relation": "oneToMany",
       "target": "api::departure-date.departure-date",
       "mappedBy": "related_tour"
+    },
+    "reviews": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tour.review"
     }
   }
 }
