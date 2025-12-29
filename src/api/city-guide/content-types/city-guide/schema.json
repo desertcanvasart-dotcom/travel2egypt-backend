@@ -24,6 +24,14 @@
         }
       }
     },
+    "short_title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "slug": {
       "type": "uid",
       "targetField": "title",
