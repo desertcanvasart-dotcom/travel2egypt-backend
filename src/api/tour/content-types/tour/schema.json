@@ -59,6 +59,19 @@
         }
       }
     },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "tour_details": {
       "type": "component",
       "repeatable": false,
