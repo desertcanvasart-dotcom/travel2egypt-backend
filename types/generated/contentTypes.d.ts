@@ -792,6 +792,12 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'hub'>;
+    short_title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -800,6 +806,170 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCruiseCategoryCruiseCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'cruise_categories';
+  info: {
+    displayName: 'Cruise Category';
+    pluralName: 'cruise-categories';
+    singularName: 'cruise-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cruise-category.cruise-category'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nile_cruises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nile-cruise.nile-cruise'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCruiseItineraryCruiseItinerary
+  extends Struct.SingleTypeSchema {
+  collectionName: 'cruise_itineraries';
+  info: {
+    displayName: 'Cruise Itinerary Page';
+    pluralName: 'cruise-itineraries';
+    singularName: 'cruise-itinerary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    blog_details: Schema.Attribute.Component<'cruise.blog-details', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    itineraries: Schema.Attribute.Component<'cruise.itinerary-item', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cruise-itinerary.cruise-itinerary'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCruiseRouteCruiseRoute extends Struct.CollectionTypeSchema {
+  collectionName: 'cruise_routes';
+  info: {
+    displayName: 'Cruise Route';
+    pluralName: 'cruise-routes';
+    singularName: 'cruise-route';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cruise-route.cruise-route'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nile_cruises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nile-cruise.nile-cruise'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -816,18 +986,32 @@ export interface ApiCruiseTypeCruiseType extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::cruise-type.cruise-type'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     nile_cruises: Schema.Attribute.Relation<
       'manyToMany',
       'api::nile-cruise.nile-cruise'
@@ -1300,6 +1484,7 @@ export interface ApiHotelHotel extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    gallery: Schema.Attribute.Media<'images', true>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::hotel.hotel'>;
     locations: Schema.Attribute.Relation<
@@ -1416,46 +1601,110 @@ export interface ApiNileCruiseNileCruise extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    amenities: Schema.Attribute.RichText;
-    content: Schema.Attribute.RichText;
+    amenities: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    cruise_categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::cruise-category.cruise-category'
+    >;
+    cruise_routes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::cruise-route.cruise-route'
+    >;
     cruise_types: Schema.Attribute.Relation<
       'manyToMany',
       'api::cruise-type.cruise-type'
     >;
-    duration: Schema.Attribute.String;
-    excerpt: Schema.Attribute.Text;
-    exclusions: Schema.Attribute.RichText;
-    featured_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    highlight_features: Schema.Attribute.RichText;
-    inclusions: Schema.Attribute.RichText;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    duration: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    exclusions: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    gallery: Schema.Attribute.Media<'images', true>;
+    highlight_features: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    inclusions: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::nile-cruise.nile-cruise'
-    > &
-      Schema.Attribute.Private;
+    >;
     nile_cruise: Schema.Attribute.Relation<
       'manyToMany',
       'api::location.location'
     >;
-    operator_name: Schema.Attribute.String;
-    overview: Schema.Attribute.RichText;
+    operator_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    overview: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     price_from: Schema.Attribute.Decimal;
-    promo_tagline: Schema.Attribute.String;
+    promo_tagline: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
-    route: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    vessel_class: Schema.Attribute.String;
   };
 }
 
@@ -2166,6 +2415,12 @@ export interface ApiTourTour extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    gallery: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     group_package_details: Schema.Attribute.Component<
       'tour.group-details',
       false
@@ -2227,6 +2482,7 @@ export interface ApiTourTour extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    reviews: Schema.Attribute.Component<'tour.review', true>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -2923,6 +3179,9 @@ declare module '@strapi/strapi' {
       'api::blog-tag.blog-tag': ApiBlogTagBlogTag;
       'api::blog.blog': ApiBlogBlog;
       'api::city-guide.city-guide': ApiCityGuideCityGuide;
+      'api::cruise-category.cruise-category': ApiCruiseCategoryCruiseCategory;
+      'api::cruise-itinerary.cruise-itinerary': ApiCruiseItineraryCruiseItinerary;
+      'api::cruise-route.cruise-route': ApiCruiseRouteCruiseRoute;
       'api::cruise-type.cruise-type': ApiCruiseTypeCruiseType;
       'api::departure-date.departure-date': ApiDepartureDateDepartureDate;
       'api::dynasty.dynasty': ApiDynastyDynasty;

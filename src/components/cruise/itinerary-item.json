@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_cruise_itinerary_items",
+  "info": {
+    "displayName": "Itinerary Item",
+    "icon": "route"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

@@ -177,6 +177,20 @@ export interface ContentVideoBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface CruiseBlogDetails extends Struct.ComponentSchema {
+  collectionName: 'components_cruise_blog_details';
+  info: {
+    displayName: 'Blog Details';
+    icon: 'file-alt';
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    publish_date: Schema.Attribute.Date;
+    read_time: Schema.Attribute.String;
+  };
+}
+
 export interface CruiseItinerary extends Struct.ComponentSchema {
   collectionName: 'components_cruise_itineraries';
   info: {
@@ -189,6 +203,18 @@ export interface CruiseItinerary extends Struct.ComponentSchema {
     duration: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
     route: Schema.Attribute.String;
+  };
+}
+
+export interface CruiseItineraryItem extends Struct.ComponentSchema {
+  collectionName: 'components_cruise_itinerary_items';
+  info: {
+    displayName: 'Itinerary Item';
+    icon: 'route';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -477,7 +503,9 @@ declare module '@strapi/strapi' {
       'content.quote-block': ContentQuoteBlock;
       'content.text-block': ContentTextBlock;
       'content.video-block': ContentVideoBlock;
+      'cruise.blog-details': CruiseBlogDetails;
       'cruise.itinerary': CruiseItinerary;
+      'cruise.itinerary-item': CruiseItineraryItem;
       'pricing.tier': PricingTier;
       'tour.child-pricing': TourChildPricing;
       'tour.details': TourDetails;

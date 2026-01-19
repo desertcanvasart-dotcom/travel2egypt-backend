@@ -43,22 +43,6 @@
         }
       }
     },
-    "route": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "vessel_class": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "operator_name": {
       "type": "string",
       "pluginOptions": {
@@ -150,6 +134,18 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::cruise-type.cruise-type",
+      "mappedBy": "nile_cruises"
+    },
+    "cruise_routes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cruise-route.cruise-route",
+      "mappedBy": "nile_cruises"
+    },
+    "cruise_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cruise-category.cruise-category",
       "mappedBy": "nile_cruises"
     }
   }

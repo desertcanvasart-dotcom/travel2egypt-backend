@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cruise_categories",
+  "info": {
+    "singularName": "cruise-category",
+    "pluralName": "cruise-categories",
+    "displayName": "Cruise Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "nile_cruises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::nile-cruise.nile-cruise",
+      "inversedBy": "cruise_categories"
+    }
+  }
+}

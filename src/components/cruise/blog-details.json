@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_cruise_blog_details",
+  "info": {
+    "displayName": "Blog Details",
+    "icon": "file-alt"
+  },
+  "options": {},
+  "attributes": {
+    "read_time": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publish_date": {
+      "type": "date"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
