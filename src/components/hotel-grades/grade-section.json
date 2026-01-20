@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_hotel_grades_grade_sections",
+  "info": {
+    "displayName": "Grade Section",
+    "icon": "star",
+    "description": "Hotel grade with cities and hotels"
+  },
+  "options": {},
+  "attributes": {
+    "grade_code": {
+      "type": "string",
+      "required": true
+    },
+    "grade_name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "cities": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hotel-grades.city-hotels"
+    }
+  }
+}

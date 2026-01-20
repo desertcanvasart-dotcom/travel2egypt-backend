@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_hotel_grades_hotel_entries",
+  "info": {
+    "displayName": "Hotel Entry",
+    "icon": "building",
+    "description": "Individual hotel"
+  },
+  "options": {},
+  "attributes": {
+    "hotel_name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

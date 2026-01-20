@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_hotel_grades_city_hotels",
+  "info": {
+    "displayName": "City Hotels",
+    "icon": "map-marker",
+    "description": "City with its hotels"
+  },
+  "options": {},
+  "attributes": {
+    "city_name": {
+      "type": "string",
+      "required": true
+    },
+    "hotels": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hotel-grades.hotel-entry"
+    }
+  }
+}

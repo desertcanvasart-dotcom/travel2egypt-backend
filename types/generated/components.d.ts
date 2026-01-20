@@ -265,6 +265,46 @@ export interface FeesCitySection extends Struct.ComponentSchema {
   };
 }
 
+export interface HotelGradesCityHotels extends Struct.ComponentSchema {
+  collectionName: 'components_hotel_grades_city_hotels';
+  info: {
+    description: 'City with its hotels';
+    displayName: 'City Hotels';
+    icon: 'map-marker';
+  };
+  attributes: {
+    city_name: Schema.Attribute.String & Schema.Attribute.Required;
+    hotels: Schema.Attribute.Component<'hotel-grades.hotel-entry', true>;
+  };
+}
+
+export interface HotelGradesGradeSection extends Struct.ComponentSchema {
+  collectionName: 'components_hotel_grades_grade_sections';
+  info: {
+    description: 'Hotel grade with cities and hotels';
+    displayName: 'Grade Section';
+    icon: 'star';
+  };
+  attributes: {
+    cities: Schema.Attribute.Component<'hotel-grades.city-hotels', true>;
+    description: Schema.Attribute.Text;
+    grade_code: Schema.Attribute.String & Schema.Attribute.Required;
+    grade_name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HotelGradesHotelEntry extends Struct.ComponentSchema {
+  collectionName: 'components_hotel_grades_hotel_entries';
+  info: {
+    description: 'Individual hotel';
+    displayName: 'Hotel Entry';
+    icon: 'building';
+  };
+  attributes: {
+    hotel_name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PricingTier extends Struct.ComponentSchema {
   collectionName: 'components_pricing_tiers';
   info: {
@@ -556,6 +596,9 @@ declare module '@strapi/strapi' {
       'distances.distance-entry': DistancesDistanceEntry;
       'fees.attraction-fee': FeesAttractionFee;
       'fees.city-section': FeesCitySection;
+      'hotel-grades.city-hotels': HotelGradesCityHotels;
+      'hotel-grades.grade-section': HotelGradesGradeSection;
+      'hotel-grades.hotel-entry': HotelGradesHotelEntry;
       'pricing.tier': PricingTier;
       'tour.child-pricing': TourChildPricing;
       'tour.details': TourDetails;

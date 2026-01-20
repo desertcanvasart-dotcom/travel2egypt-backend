@@ -1607,6 +1607,65 @@ export interface ApiHistoricalKingHistoricalKing
   };
 }
 
+export interface ApiHotelGradeConceptHotelGradeConcept
+  extends Struct.SingleTypeSchema {
+  collectionName: 'hotel_grade_concepts';
+  info: {
+    displayName: 'Hotel Grade Concept Page';
+    pluralName: 'hotel-grade-concepts';
+    singularName: 'hotel-grade-concept';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    grades: Schema.Attribute.Component<'hotel-grades.grade-section', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hotel-grade-concept.hotel-grade-concept'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHotelHotel extends Struct.CollectionTypeSchema {
   collectionName: 'hotels';
   info: {
@@ -3426,6 +3485,7 @@ declare module '@strapi/strapi' {
       'api::faq.faq': ApiFaqFaq;
       'api::god.god': ApiGodGod;
       'api::historical-king.historical-king': ApiHistoricalKingHistoricalKing;
+      'api::hotel-grade-concept.hotel-grade-concept': ApiHotelGradeConceptHotelGradeConcept;
       'api::hotel.hotel': ApiHotelHotel;
       'api::location.location': ApiLocationLocation;
       'api::nile-cruise.nile-cruise': ApiNileCruiseNileCruise;
