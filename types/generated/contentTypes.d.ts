@@ -1973,6 +1973,65 @@ export interface ApiQueenQueen extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiResponsibleTravelResponsibleTravel
+  extends Struct.SingleTypeSchema {
+  collectionName: 'responsible_travels';
+  info: {
+    displayName: 'Responsible Travel Page';
+    pluralName: 'responsible-travels';
+    singularName: 'responsible-travel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    blog_details: Schema.Attribute.Component<'cruise.blog-details', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::responsible-travel.responsible-travel'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTempleTemple extends Struct.CollectionTypeSchema {
   collectionName: 'temples';
   info: {
@@ -3194,6 +3253,7 @@ declare module '@strapi/strapi' {
       'api::nile-cruise.nile-cruise': ApiNileCruiseNileCruise;
       'api::pyramid.pyramid': ApiPyramidPyramid;
       'api::queen.queen': ApiQueenQueen;
+      'api::responsible-travel.responsible-travel': ApiResponsibleTravelResponsibleTravel;
       'api::temple.temple': ApiTempleTemple;
       'api::tip-category.tip-category': ApiTipCategoryTipCategory;
       'api::tomb.tomb': ApiTombTomb;
