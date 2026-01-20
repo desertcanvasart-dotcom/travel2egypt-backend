@@ -218,6 +218,22 @@ export interface CruiseItineraryItem extends Struct.ComponentSchema {
   };
 }
 
+export interface DistancesDistanceEntry extends Struct.ComponentSchema {
+  collectionName: 'components_distances_distance_entries';
+  info: {
+    description: 'Distance between two cities';
+    displayName: 'Distance Entry';
+    icon: 'car';
+  };
+  attributes: {
+    distance_km: Schema.Attribute.Integer & Schema.Attribute.Required;
+    drive_time: Schema.Attribute.String;
+    from_city: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    to_city: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PricingTier extends Struct.ComponentSchema {
   collectionName: 'components_pricing_tiers';
   info: {
@@ -506,6 +522,7 @@ declare module '@strapi/strapi' {
       'cruise.blog-details': CruiseBlogDetails;
       'cruise.itinerary': CruiseItinerary;
       'cruise.itinerary-item': CruiseItineraryItem;
+      'distances.distance-entry': DistancesDistanceEntry;
       'pricing.tier': PricingTier;
       'tour.child-pricing': TourChildPricing;
       'tour.details': TourDetails;

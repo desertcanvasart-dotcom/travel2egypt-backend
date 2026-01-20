@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_distances_distance_entries",
+  "info": {
+    "displayName": "Distance Entry",
+    "icon": "car",
+    "description": "Distance between two cities"
+  },
+  "options": {},
+  "attributes": {
+    "from_city": {
+      "type": "string",
+      "required": true
+    },
+    "to_city": {
+      "type": "string",
+      "required": true
+    },
+    "distance_km": {
+      "type": "integer",
+      "required": true
+    },
+    "drive_time": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

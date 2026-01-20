@@ -1058,6 +1058,64 @@ export interface ApiDepartureDateDepartureDate
   };
 }
 
+export interface ApiDistancesPageDistancesPage extends Struct.SingleTypeSchema {
+  collectionName: 'distances_pages';
+  info: {
+    displayName: 'Distances Between Cities Page';
+    pluralName: 'distances-pages';
+    singularName: 'distances-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    distances: Schema.Attribute.Component<'distances.distance-entry', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::distances-page.distances-page'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDynastyDynasty extends Struct.CollectionTypeSchema {
   collectionName: 'dynasties';
   info: {
@@ -3243,6 +3301,7 @@ declare module '@strapi/strapi' {
       'api::cruise-route.cruise-route': ApiCruiseRouteCruiseRoute;
       'api::cruise-type.cruise-type': ApiCruiseTypeCruiseType;
       'api::departure-date.departure-date': ApiDepartureDateDepartureDate;
+      'api::distances-page.distances-page': ApiDistancesPageDistancesPage;
       'api::dynasty.dynasty': ApiDynastyDynasty;
       'api::faq-category.faq-category': ApiFaqCategoryFaqCategory;
       'api::faq.faq': ApiFaqFaq;
