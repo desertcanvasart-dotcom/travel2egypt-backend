@@ -812,6 +812,64 @@ export interface ApiCityGuideCityGuide extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCovidUpdateCovidUpdate extends Struct.SingleTypeSchema {
+  collectionName: 'covid_updates';
+  info: {
+    displayName: 'Coronavirus Update Page';
+    pluralName: 'covid-updates';
+    singularName: 'covid-update';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    blog_details: Schema.Attribute.Component<'cruise.blog-details', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::covid-update.covid-update'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCruiseCategoryCruiseCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'cruise_categories';
@@ -3296,6 +3354,7 @@ declare module '@strapi/strapi' {
       'api::blog-tag.blog-tag': ApiBlogTagBlogTag;
       'api::blog.blog': ApiBlogBlog;
       'api::city-guide.city-guide': ApiCityGuideCityGuide;
+      'api::covid-update.covid-update': ApiCovidUpdateCovidUpdate;
       'api::cruise-category.cruise-category': ApiCruiseCategoryCruiseCategory;
       'api::cruise-itinerary.cruise-itinerary': ApiCruiseItineraryCruiseItinerary;
       'api::cruise-route.cruise-route': ApiCruiseRouteCruiseRoute;
