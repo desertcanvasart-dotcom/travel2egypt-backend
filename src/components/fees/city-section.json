@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_fees_city_sections",
+  "info": {
+    "displayName": "City Section",
+    "icon": "map-marker",
+    "description": "City with its attraction fees"
+  },
+  "options": {},
+  "attributes": {
+    "city_name": {
+      "type": "string",
+      "required": true
+    },
+    "attractions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "fees.attraction-fee"
+    }
+  }
+}

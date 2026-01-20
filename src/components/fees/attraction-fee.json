@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_fees_attraction_fees",
+  "info": {
+    "displayName": "Attraction Fee",
+    "icon": "ticket",
+    "description": "Individual attraction entry fee"
+  },
+  "options": {},
+  "attributes": {
+    "site_name": {
+      "type": "string",
+      "required": true
+    },
+    "adult_price": {
+      "type": "string"
+    },
+    "student_price": {
+      "type": "string"
+    },
+    "site_type": {
+      "type": "enumeration",
+      "enum": ["Temple", "Museum", "Tomb", "Pyramid", "Monument", "Other"],
+      "default": "Other"
+    }
+  }
+}

@@ -234,6 +234,37 @@ export interface DistancesDistanceEntry extends Struct.ComponentSchema {
   };
 }
 
+export interface FeesAttractionFee extends Struct.ComponentSchema {
+  collectionName: 'components_fees_attraction_fees';
+  info: {
+    description: 'Individual attraction entry fee';
+    displayName: 'Attraction Fee';
+    icon: 'ticket';
+  };
+  attributes: {
+    adult_price: Schema.Attribute.String;
+    site_name: Schema.Attribute.String & Schema.Attribute.Required;
+    site_type: Schema.Attribute.Enumeration<
+      ['Temple', 'Museum', 'Tomb', 'Pyramid', 'Monument', 'Other']
+    > &
+      Schema.Attribute.DefaultTo<'Other'>;
+    student_price: Schema.Attribute.String;
+  };
+}
+
+export interface FeesCitySection extends Struct.ComponentSchema {
+  collectionName: 'components_fees_city_sections';
+  info: {
+    description: 'City with its attraction fees';
+    displayName: 'City Section';
+    icon: 'map-marker';
+  };
+  attributes: {
+    attractions: Schema.Attribute.Component<'fees.attraction-fee', true>;
+    city_name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PricingTier extends Struct.ComponentSchema {
   collectionName: 'components_pricing_tiers';
   info: {
@@ -523,6 +554,8 @@ declare module '@strapi/strapi' {
       'cruise.itinerary': CruiseItinerary;
       'cruise.itinerary-item': CruiseItineraryItem;
       'distances.distance-entry': DistancesDistanceEntry;
+      'fees.attraction-fee': FeesAttractionFee;
+      'fees.city-section': FeesCitySection;
       'pricing.tier': PricingTier;
       'tour.child-pricing': TourChildPricing;
       'tour.details': TourDetails;
