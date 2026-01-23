@@ -64,7 +64,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::temple.temple",
-      "inversedBy": "associated_pharaohs"
+      "mappedBy": "associated_pharaohs"
     },
     "iconography_explained": {
       "type": "richtext",

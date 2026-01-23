@@ -42,8 +42,7 @@
     "builder": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::historical-king.historical-king",
-      "inversedBy": "major_monuments"
+      "target": "api::historical-king.historical-king"
     },
     "dynasty": {
       "type": "relation",
@@ -102,7 +101,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::historical-king.historical-king",
-      "mappedBy": "major_monuments"
+      "inversedBy": "major_monuments"
     },
     "related_queens": {
       "type": "relation",
