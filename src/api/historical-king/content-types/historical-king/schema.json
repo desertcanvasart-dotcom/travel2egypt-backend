@@ -136,7 +136,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::queen.queen",
-      "mappedBy": "pharaoh_consort"
+      "mappedBy": "husband"
     },
     "tombs": {
       "type": "relation",
@@ -148,7 +148,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::pyramid.pyramid",
-      "mappedBy": "pharaoh"
+      "mappedBy": "builder"
     }
   }
 }

@@ -59,22 +59,26 @@
     "related_pharaohs": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::historical-king.historical-king"
+      "target": "api::historical-king.historical-king",
+      "inversedBy": "related_articles"
     },
     "related_queens": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::queen.queen"
+      "target": "api::queen.queen",
+      "inversedBy": "related_articles"
     },
     "related_tombs": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tomb.tomb"
+      "target": "api::tomb.tomb",
+      "inversedBy": "related_articles"
     },
     "related_pyramids": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::pyramid.pyramid"
+      "target": "api::pyramid.pyramid",
+      "inversedBy": "related_articles"
     },
     "related_gods": {
       "type": "relation",

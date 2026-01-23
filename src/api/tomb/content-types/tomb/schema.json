@@ -58,10 +58,11 @@
           "other"
         ]
       },
-      "occupant_pharaoh": {
+      "pharaoh": {
         "type": "relation",
-        "relation": "oneToOne",
-        "target": "api::historical-king.historical-king"
+        "relation": "manyToOne",
+        "target": "api::historical-king.historical-king",
+        "inversedBy": "tombs"
       },
       "occupant_queen": {
         "type": "relation",
