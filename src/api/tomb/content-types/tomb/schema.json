@@ -182,7 +182,7 @@
         "type": "relation",
         "relation": "manyToMany",
         "target": "api::pyramid.pyramid",
-        "mappedBy": "related_tombs"
+        "inversedBy": "associated_tombs"
       },
       "seo_title": {
         "type": "string",
