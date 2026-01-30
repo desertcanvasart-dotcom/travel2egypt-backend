@@ -178,12 +178,6 @@
         "target": "api::temple.temple",
         "mappedBy": "related_tombs"
       },
-      "related_pyramids": {
-        "type": "relation",
-        "relation": "manyToMany",
-        "target": "api::pyramid.pyramid",
-        "inversedBy": "associated_tombs"
-      },
       "seo_title": {
         "type": "string",
         "pluginOptions": {
