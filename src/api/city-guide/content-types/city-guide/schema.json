@@ -86,8 +86,7 @@
     "parent": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::city-guide.city-guide",
-      "inversedBy": "children"
+      "target": "api::city-guide.city-guide"
     },
     "children": {
       "type": "relation",

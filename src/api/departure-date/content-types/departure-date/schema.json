@@ -31,8 +31,7 @@
       "related_tour": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::tour.tour",
-        "inversedBy": "departure_dates"
+        "target": "api::tour.tour"
       }
     }
   }
