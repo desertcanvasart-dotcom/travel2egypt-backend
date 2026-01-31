@@ -137,7 +137,8 @@
       "related_pyramids": {
         "type": "relation",
         "relation": "manyToMany",
-        "target": "api::pyramid.pyramid"
+        "target": "api::pyramid.pyramid",
+        "inversedBy": "related_queens"
       },
       "related_tombs": {
         "type": "relation",
