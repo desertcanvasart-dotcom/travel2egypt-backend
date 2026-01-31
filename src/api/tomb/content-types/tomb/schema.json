@@ -61,8 +61,7 @@
       "pharaoh": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::historical-king.historical-king",
-        "inversedBy": "tombs"
+        "target": "api::historical-king.historical-king"
       },
       "occupant_queen": {
         "type": "relation",
@@ -80,8 +79,7 @@
       "dynasty": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::dynasty.dynasty",
-        "inversedBy": "tombs"
+        "target": "api::dynasty.dynasty"
       },
       "period_built": {
         "type": "string",

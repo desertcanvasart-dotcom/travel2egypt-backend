@@ -57,14 +57,12 @@
       "builder": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::historical-king.historical-king",
-        "inversedBy": "pyramids"
+        "target": "api::historical-king.historical-king"
       },
       "dynasty": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::dynasty.dynasty",
-        "inversedBy": "pyramids"
+        "target": "api::dynasty.dynasty"
       },
       "period_built": {
         "type": "string",
