@@ -33,8 +33,7 @@
     "dynasty": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::dynasty.dynasty",
-      "inversedBy": "pharaohs"
+      "target": "api::dynasty.dynasty"
     },
     "period_start": {
       "type": "integer"
