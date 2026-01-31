@@ -85,7 +85,8 @@
       "monuments": {
         "type": "relation",
         "relation": "manyToMany",
-        "target": "api::temple.temple"
+        "target": "api::temple.temple",
+        "inversedBy": "related_queens"
       },
       "tomb": {
         "type": "relation",

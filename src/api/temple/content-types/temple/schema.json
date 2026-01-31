@@ -112,7 +112,8 @@
     "related_tombs": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tomb.tomb"
+      "target": "api::tomb.tomb",
+      "inversedBy": "related_temples"
     },
     "related_pyramids": {
       "type": "relation",
