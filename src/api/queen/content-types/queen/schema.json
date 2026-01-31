@@ -33,8 +33,7 @@
       "dynasty": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::dynasty.dynasty",
-        "inversedBy": "queens"
+        "target": "api::dynasty.dynasty"
       },
       "period_start": {
         "type": "integer"
@@ -65,8 +64,7 @@
       "husband": {
         "type": "relation",
         "relation": "manyToOne",
-        "target": "api::historical-king.historical-king",
-        "inversedBy": "queens"
+        "target": "api::historical-king.historical-king"
       },
       "biography": {
         "type": "richtext",
@@ -87,14 +85,12 @@
       "monuments": {
         "type": "relation",
         "relation": "manyToMany",
-        "target": "api::temple.temple",
-        "inversedBy": "related_queens"
+        "target": "api::temple.temple"
       },
       "tomb": {
         "type": "relation",
         "relation": "oneToOne",
-        "target": "api::tomb.tomb",
-        "inversedBy": "occupant_queen"
+        "target": "api::tomb.tomb"
       },
       "iconography": {
         "type": "richtext",
@@ -141,8 +137,7 @@
       "related_pyramids": {
         "type": "relation",
         "relation": "manyToMany",
-        "target": "api::pyramid.pyramid",
-        "inversedBy": "related_queens"
+        "target": "api::pyramid.pyramid"
       },
       "related_tombs": {
         "type": "relation",
